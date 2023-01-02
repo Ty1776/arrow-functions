@@ -142,16 +142,11 @@ let message = name => `Hello, ${name}!`;
 console.log(message('Allie'));
 
 
-// let Student = function(name, age, hometown) {
-//   this.name = name;
-//   this.age = age;
-//   this.hometown = hometown;
-// };
-
-let Student = (name, age, hometown) => 
+let Student = function(name, age, hometown) {
   this.name = name;
   this.age = age;
   this.hometown = hometown;
+};
 
 
 let joe = new Student('Joe', 'Schmoe', 100);
@@ -170,18 +165,20 @@ Student.prototype.greeting = function() {
 
 // TODO: Uncomment the following line of code to see the output in the browser console
 // Note that the arrow function will cause this method to break!
-// console.log(joe.greeting());
+console.log(joe.greeting());
 
 // TODO: After viewing the previous console.log(), return the code to a working state.
 
 
 
-Student.courseName = function() {
-  return 'This student is enrolled in Code 301.';
-};
+// Student.courseName = function() {
+//   return 'This student is enrolled in Code 301.';
+// };
+
+Student.courseName = student => 'This student is enrolled in Code 301.';
 
 // TODO: Uncomment the following line of code to see the output in the browser console
-// console.log(Student.courseName());
+console.log(Student.courseName());
 
 
 
@@ -192,17 +189,17 @@ Student.prototype.scope = function() {
 };
 
 // TODO: Uncomment the following line of code to see the output in the browser console
-// joe.scope();
+joe.scope();
 
 Student.prototype.scopeArrow = () => console.log(this);
 
 // TODO: Uncomment the following line of code to see the output in the browser console
-// joe.scopeArrow();
+joe.scopeArrow();
 
 // TODO: Write a COMMENT below to answer the following questions.
 // 1. What is "this" when joe.scope() is invoked?
-//
+// "this" refers to the input values in the constructor. In this case name: "Joe", age "Schmoe", hometown "100".
 // 2. What is "this" when joe.scopeArrow() is invoked?
-//
+// When joe.scopeArrow is invoked, the script is not able to apply the necessary informantion from the constructor due to this being an arrow function.
 // 3. Explain why "this" is different when an arrow function is used.
-//
+// Arrow functions do not have their own bindings to "this" (MDNdocs)
